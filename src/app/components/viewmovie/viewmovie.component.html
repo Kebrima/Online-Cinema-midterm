@@ -1,0 +1,83 @@
+<div class="album py-5 bg-light mt-5">
+  <div class="container">
+    <ul class="list-unstyled">
+      <li class="media mb-5">
+        <img class="d-flex mr-3" src="https://upload.wikimedia.org/wikipedia/ru/2/2c/Kimi_no_Na_wa.jpg" alt="Generic placeholder image" style="width: 300px">
+        <div class="media-body">
+          <h5 class="mt-0 mb-1 font-weight-bold container">Твоё имя</h5>
+          <table class="table table-sm">
+            <tbody>
+            <tr>
+              <th scope="row">Год выхода:</th>
+              <td>2016</td>
+            </tr>
+            <tr>
+              <th scope="row">Жанр:</th>
+              <td>Фэнтези, Аниме, Драмы</td>
+            </tr>
+            <tr>
+              <th scope="row">Страна:</th>
+              <td>Япония</td>
+            </tr>
+            <tr>
+              <th scope="row">Режисер:</th>
+              <td>Макото Синкай</td>
+            </tr>
+            <tr>
+              <th scope="row">В ролях:</th>
+              <td>Рюносукэ Камики, Монэ Камисираиси, Рё Нарита, Аои Юки, Симадзаки Нобунага, Каито Исикава, Канон Тани, Масаки Тэрасома, Саяка Охара, Кадзухико Иноэ</td>
+            </tr>
+            <tr>
+              <th scope="row">Время:</th>
+              <td>110 мин / 01:50</td>
+            </tr>
+            <tr>
+              <th scope="row">Перевод:</th>
+              <td>Дублированное | Чистый звук</td>
+            </tr>
+            <tr>
+              <th scope="row">Качество:</th>
+              <td>HDRip</td>
+            </tr>
+            <table class="table table-sm">
+              <tbody>
+            <tr>
+            <th scope="row"><button (click)="increment()" class="btn btn-sm btn-outline-light-blue accent-3">Нравится</button></th>
+              <td><app-likes  [myNewnumber] = "counter"></app-likes></td>
+              <td><i class="far fa-heart red-text"></i></td>
+            </tr>
+              </tbody>
+            </table>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    </ul>
+    <hr class="light-blue">
+    <div class="text-center">
+      <p>Это красочное аниме с элементами драмы и мелодрамы повествует запутанную историю о странной связи, любви и обмене телами. В центре увлекательных событий оказываются два главных героя – девушка по имени Мицуха Миямидзу и парень, которого зовут Таки Татибана. Она живет в небольшом провинциальном городке. Он – житель Токио. Они никогда не были знакомы и нигде не встречались. В одно прекрасное утро оба просыпаются с непривычным ощущением пустоты внутри. Мицухе в школе приятели сообщают, что ее поведение было каким-то пугающим и необычным. Затем дома, после специального ритуала по созданию кутиками-сакэ, наша героиня кричит на всю округу, что ненавидит этот проклятый город и хочет жить в столице... На следующий день она с удивлением обнаруживает себя в теле незнакомого мальчика. Она буквально переселилась в постороннего человека, которым оказался Таки... Вскоре парочка выясняет, что каким-то удивительным образом они могут меняться местами. Им нравится эта их поразительная особенность. И школьники начинают систематически переселяться друг в друга. Эта игра кажется им забавной, и молодые люди все больше времени проводят на чужом месте, живя другой жизнью, даже не подозревая, к чему все это приведет...</p>
+    </div>
+    <hr class="light-blue">
+    <div class="embed-responsive embed-responsive-21by9">
+      <iframe class="embed-responsive-item" src="//5678.videocdn.ca/HLA920uJKFMg/anime/84" allowfullscreen></iframe>
+    </div>
+    <div class="text-center mt-3" >
+      <p>Оставьте отзыв о фильме</p>
+    </div>
+    <form (submit)="addReview(newname.value, newreview.value)">
+      <div class="form-group green-border-focus">
+        <label>Ваше имя:</label>
+        <input class="form-control form-control-lg" id="name" type="text" #newname>
+        <div class="form-group green-border-focus">
+          <label>Ваш отзыв:</label>
+          <input class="form-control form-control-lg" id="review" type="text" #newreview>
+          <button type="submit" class="btn btn-outline-light-blue accent-3 mb-2">Отправить</button>
+        </div>
+      </div>
+    </form>
+    <ul class="list-group">
+      <li *ngFor="let info of reviews" class="list-group-item"><h6>Имя: <b>{{info.name}}</b></h6>
+      Отзыв: {{info.review}}</li>
+    </ul>
+  </div>
+</div>
