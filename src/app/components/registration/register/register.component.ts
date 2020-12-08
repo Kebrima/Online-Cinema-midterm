@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ValidationErrors, Validator, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-register',

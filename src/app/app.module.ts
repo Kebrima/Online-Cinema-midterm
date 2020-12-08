@@ -17,16 +17,25 @@ import { LoginComponent } from './components/registration/login/login.component'
 import { RegisterComponent } from './components/registration/register/register.component';
 import { RestoreaccountComponent } from './components/registration/restoreaccount/restoreaccount.component';
 import { LikesComponent } from './components/likes/likes.component';
+import {HttpClientModule} from '@angular/common/http';
+import {AnimeService} from './services/out/anime.service';
 
+import {ShareService} from './services/share.service';
+import {RegisterGuard} from './guards/register.guard';
+import {ExitLoginGuard} from './guards/exit-login.guard';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 const appRoutes: Routes = [
   {path: '', component: MaincontentComponent},
+  {path: 'home', component: MaincontentComponent},
   {path: 'news', component: NewsComponent},
+  {path: 'viewmovie/:id', component: ViewmovieComponent, canDeactivate: [ExitLoginGuard]},
+  {path: 'login', component: LoginComponent, canDeactivate: [ExitLoginGuard]},
+  {path: 'reg', component: RegisterComponent, canDeactivate: [ExitLoginGuard]},
+  {path: 'restore', component: RestoreaccountComponent, canDeactivate: [ExitLoginGuard]},
   {path: 'aboutus', component: AboutusComponent},
-  {path: 'viewmovie', component: ViewmovieComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'reg', component: RegisterComponent},
-  {path: 'restore', component: RestoreaccountComponent},
 ];
+//{path: 'reg', component: RegisterComponent, canActivate: [RegisterGuard]},
 
 @NgModule({
   declarations: [
@@ -42,14 +51,16 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     RestoreaccountComponent,
-    LikesComponent
+    LikesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [ShareService, RegisterGuard, ExitLoginGuard, AnimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

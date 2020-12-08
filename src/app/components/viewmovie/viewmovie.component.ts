@@ -1,6 +1,10 @@
 import {Component, OnChanges, OnInit, ViewChild, SimpleChanges} from '@angular/core';
 import {ComentsComponent} from '../coments/coments.component';
 import {LikesComponent} from '../likes/likes.component';
+import {ActivatedRoute} from '@angular/router';
+
+import {Animes} from '../../services/anime-service/animes';
+import {AnimesService} from '../../services/anime-service/animes.service';
 
 
 @Component({
@@ -9,6 +13,9 @@ import {LikesComponent} from '../likes/likes.component';
   styleUrls: ['./viewmovie.component.css']
 })
 export class ViewmovieComponent implements OnInit {
+
+  animes: Animes;
+
   @ViewChild(LikesComponent) viewchild: LikesComponent;
   private number: number;
   newname: string;
@@ -16,12 +23,22 @@ export class ViewmovieComponent implements OnInit {
    reviews = [
     {name: 'Самад', review: 'прекрасная полнометрaжка'}
   ];
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private animesService: AnimesService
+  ) {}
 
   ngOnInit(): void {
+    this.getAnimes();
     this.number = 0;
     this.reviews = [];
     console.log('AppComponent:OnInit');
+  }
+
+  getAnimes(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.animesService.getAnimes(id)
+      .subscribe(animes => this.animes = animes);
   }
   get counter(){
     return this.number;

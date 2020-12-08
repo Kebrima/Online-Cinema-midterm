@@ -1,19 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import {ShareService} from '../../services/share.service';
+import {LoggingService} from '../../services/logging.service';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
+  styleUrls: ['./news.component.css'],
+  providers: [ShareService, LoggingService]
 })
 export class NewsComponent implements OnInit {
+  newsitems;
   items: string[];
   today: number = Date.now();
   daysremain: number;
 
-  constructor() { }
+  constructor(private shareService: ShareService, private loggingService: LoggingService) {
+    this.newsitems = shareService.getSharedNews();
+    // this.loggingService.log(this.newsitems);
+  }
 
   ngOnInit(): void {
-    this.items = ['News', 'News', 'News'];
+    // this.items = ['News', 'News', 'News'];
     this.daysremain = 25;
   }
 

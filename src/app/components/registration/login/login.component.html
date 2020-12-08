@@ -10,18 +10,19 @@
   <div class="card-body px-lg-5 pt-0">
 
 
-    <form class="text-center" style="color: #757575;" action="#!">
+    <form #newForm="ngForm" class="text-center" style="color: #757575;">
 
 
       <div class="md-form">
-        <input type="email" id="materialLoginFormEmail" class="form-control">
-        <label for="materialLoginFormEmail">Почта</label>
+        <input type="email" id="materialLoginFormEmail" class="form-control" placeholder="Почта" name="email" ngModel required #email="ngModel" email>
+        <span *ngIf="email.invalid && email.touched" class="error">Электронная почта обязательна!</span>
+        <!--        <label  for="materialLoginFormEmail"></label>-->
       </div>
 
 
       <div class="md-form">
-        <input type="password" id="materialLoginFormPassword" class="form-control">
-        <label for="materialLoginFormPassword">Пароль</label>
+        <input type="password" id="materialLoginFormPassword" class="form-control" placeholder="Пароль" name="password" #password="ngModel" required ngModel>
+        <span *ngIf="password.invalid && password.touched" class="error"></span>
       </div>
 
       <div class="d-flex justify-content-around">

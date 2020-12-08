@@ -14,8 +14,8 @@
       <p>Мы отправим ссылку на вашу почту, с помощью этой ссылки вы можете восстановить аккаунт</p>
 
       <div class="md-form">
-        <input type="email" id="materialSubscriptionFormEmail" class="form-control">
-        <label for="materialSubscriptionFormEmail">Почта</label>
+        <input type="email" id="materialLoginFormEmail" class="form-control" placeholder="Почта" name="email" ngModel required #email="ngModel" email>
+        <span *ngIf="email.invalid && email.touched" class="error">Электронная почта обязательна!</span>
       </div>
 
 
